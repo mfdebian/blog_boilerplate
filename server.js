@@ -6,8 +6,12 @@ const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./openapi.yaml');
 
+try {
+  loadEnvFile('.env');
+} catch (err) {
+  console.log('.env file not found, proceeding without it.');
+}
 
-loadEnvFile('.env');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
